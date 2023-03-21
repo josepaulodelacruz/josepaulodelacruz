@@ -1,0 +1,41 @@
+.terminal-container {
+    width: 1024px;
+    height: 1024px;
+    border: none;
+    border-radius: 20px;
+}
+
+.react-terminal-wrapper {
+    width: 1024px;
+    height: 1024px;
+    background: #252a33;
+    color: #eee;
+    font-size: 32px;
+    font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+    border-radius: 4px;
+    padding: 75px 45px 35px;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.terminal-hidden-input {
+    position: fixed;
+    left: -1000px;
+    top: -7000px;
+    /*visibility: hidden;*/
+}
+
+.react-terminal {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh !important;
+
+}
+
+.react-terminal-line {
+    white-space: pre;
+    font-size: 2rem;
+}
+

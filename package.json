@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+      "@react-spring/three": "^9.7.1",
+      "@react-three/drei": "^9.56.26",
+      "@react-three/fiber": "^8.11.5",
+      "@theatre/core": "^0.5.1",
+      "@theatre/r3f": "^0.5.1",
+      "@theatre/studio": "^0.5.1",
+      "leva": "^0.9.34",
+      "r3f-perf": "^7.1.2",
+      "react-device-detect": "^2.2.3",
+      "react-hook-screen-orientation": "^1.0.4",
+      "react-terminal-ui": "^1.0.1",
+      "three": "^0.150.0",
+      "zustand": "^4.3.3"
+    },
+    "devDependencies": {
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/react": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-react": "^3.0.0",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "postcss": "^8.4.18",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tailwindcss": "^3.2.1",
+        "vite": "^4.0.0"
+    }
+}
