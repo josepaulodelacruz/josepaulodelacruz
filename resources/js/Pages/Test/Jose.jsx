@@ -4,7 +4,7 @@ function Jose () {
   return (
     <>
       <Head>
-
+        <title>Jose Page</title>
         <meta name="jose" content="portfolio"/>
       </Head>
       <h1>

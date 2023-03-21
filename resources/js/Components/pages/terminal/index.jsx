@@ -39,6 +39,10 @@ export default function TerminalPage() {
       ld.push(<TerminalOutput key={ld.length}>Currently building the backend. Thank you for your patience.</TerminalOutput>);
     } else if(input.toLocaleLowerCase().trim().includes('cd contact.md'))  {
       ld.push(<TerminalOutput key={ld.length}>You can email me at delacruzjosepaulo@gmail.com</TerminalOutput>);
+    } else if (input.toLocaleLowerCase().trim().includes('cd jose')) {
+      ld.push(<TerminalOutput key={ld.length}>Opening Jose page</TerminalOutput>);
+      ///go to route
+      window.open(route('jose'))
     } else if (input) {
       ld.push(<TerminalOutput key={ld.length}>Unrecognized command</TerminalOutput>);
     }

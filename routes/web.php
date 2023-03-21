@@ -20,10 +20,16 @@ Route::get('/', function () {
     return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'canJose' => Route::has('jose'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+///Testing purposes
+Route::get('/jose', function() {
+  return Inertia::render('Test/Jose');
+})->name('jose');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
