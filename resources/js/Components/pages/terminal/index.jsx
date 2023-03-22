@@ -42,7 +42,7 @@ export default function TerminalPage() {
     } else if (input.toLocaleLowerCase().trim().includes('cd jose')) {
       ld.push(<TerminalOutput key={ld.length}>Opening Jose page</TerminalOutput>);
       ///go to route
-      window.open(route('jose'))
+      window.open(route('dashboard'))
     } else if (input) {
       ld.push(<TerminalOutput key={ld.length}>Unrecognized command</TerminalOutput>);
     }

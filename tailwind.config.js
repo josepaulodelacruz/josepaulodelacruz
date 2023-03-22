@@ -9,8 +9,13 @@ module.exports = {
         './resources/js/**/*.jsx',
     ],
 
+
     theme: {
         extend: {
+            colors: {
+              primary: '#202225',
+              secondary: '#5865f2',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
