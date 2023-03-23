@@ -12,4 +12,9 @@ class AdminController extends Controller
     {
       return Inertia::render('Admin/Admin');
     }
+
+    public function blogIndex()
+    {
+      return Inertia::render('Blog/Blog');
+    }
 }

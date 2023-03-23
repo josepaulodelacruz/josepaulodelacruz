@@ -1,8 +1,11 @@
+import { adminStore } from "@/stores/adminStore";
 
 function Navbar(){
   return (
-    <nav className="py-6 px-3 container rounded w-full shadow-indigo-500/40">
-      This is navbar
+    <nav className="flex py-6 px-3 bg-white rounded w-full shadow">
+      <div className="pl-6">
+
+      </div>
 
     </nav>
   )

@@ -36,8 +36,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+  Route::get('/admin/blogs', [AdminController::class, 'blogIndex'])->name('admin.blogs');
 });
 
 Route::middleware('auth')->group(function () {

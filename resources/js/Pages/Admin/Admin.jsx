@@ -4,7 +4,9 @@ import AdminLayout from '../../Layouts/AdminLayout';
 function Admin() {
   return(
     <AdminLayout>
-      testing
+      Admin
+
+
     </AdminLayout>
   )
 }

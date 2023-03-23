@@ -1,27 +1,80 @@
+import { useEffect } from "react"
 import { Link } from '@inertiajs/react'
-import DangerButton from "@/Components/DangerButton";
+import { adminStore } from "@/stores/adminStore"
+import { router } from '@inertiajs/react'
+
+const Menus = [
+  { title: "Dashboard", src: "Chart_fill" },
+  { title: "Inbox", src: "Chat" },
+  { title: "Blogs", src: "Blogs", gap: true },
+  { title: "Schedule ", src: "Calendar" },
+  { title: "Search", src: "Search" },
+  { title: "Analytics", src: "Chart" },
+  { title: "Files ", src: "Folder", gap: true },
+  { title: "Setting", src: "Setting" },
+];
 
 function Sidebar(){
+  const { isSidebarOpen, triggerSidebar } = adminStore(state => state)
+
+  const _handleNavigate = (title) => {
+    if(title === "Blogs") {
+      const url = route('admin.blogs')
+      router.visit(url)
+      console.log(url)
+    }
+
+  }
+
   return (
-    <div className="flex justify-between flex-col bg-primary shadow min-h-screen w-1/6">
-      <Link href={route('home')} className="font-bold pl-6 pt-4 text-white shadow text-xl mt-auto">
-        Home
-      </Link>
-      <ul className="flex flex-col pt-4 h-full pl-6">
-        <Link href="" className="font-bold items-center flex text-white shadow text-md py-1">
-          <span className="material-icons mr-2">&#xe7fd;</span>
-          Profiles </Link>
-        <Link href="" className="font-bold items-center flex text-white shadow text-md py-1">
-          <span className="material-icons mr-2">&#xeb81;</span>
-          Blogs </Link>
-        <Link href="" className="font-bold items-center flex text-white shadow text-md py-1">
-          <span className="material-icons mr-2">&#xef6e;</span>
-          Projects </Link>
+    <div
+      className={`${isSidebarOpen ? 'w-72' : 'w-20'} items-stretch flex flex-col p-5 pt-8 duration-200 relative bg-primary shadow min-h-screen`}
+    >
+      <div className={`absolute cursor-pointer -right-6 top-5 w-12 h-12 bg-white border-dark-purple
+           border-2 rounded-full`}>
+        <button
+          onClick={() => triggerSidebar()}
+          className="flex items-center justify-center w-full h-full">
+          <span className="material-icons self-center">&#xe5d2;</span>
+        </button>
+      </div>
+
+      <div className="">
+
+        <h1
+          className={`text-white origin-left font-medium text-xl duration-200 ${
+            !isSidebarOpen && "scale-0"
+          }`}
+        >
+         Jose
+        </h1>
+      </div>
+
+      <ul className="pt-6">
+        {Menus.map((Menu, index) => (
+          <Link href={null} as="button" onClick={() => _handleNavigate(Menu.title)}
+            key={index}
+            className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4
+              ${Menu.gap ? "mt-9" : "mt-2"} ${
+              index === 0 && "bg-light-white"
+            } `}
+          >
+            <div className="h-6 w-6 rounded-full bg-white"/>
+            <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200`}>
+                {Menu.title}
+              </span>
+          </Link>
+        ))}
       </ul>
-      <Link href={route('logout')} method="post" className="flex w-40 rounded bg-red-800 text-white font-bold text-sm items-center ml-6 p-3 mb-10">
-        <span className="material-icons mr-2">logout</span>
-        LOGOUT
-      </Link>
+
+     <div className="flex text-white h-full items-end">
+       <div className="h-6 w-6 rounded-full bg-white"/>
+       <span className={`${!isSidebarOpen && "hidden"} pl-3 origin-left duration-200`}>
+         Logout
+        </span>
+     </div>
+
+
     </div>
   )
 }
