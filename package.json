@@ -5,19 +5,20 @@
         "build": "vite build"
     },
     "dependencies": {
-      "@react-spring/three": "^9.7.1",
-      "@react-three/drei": "^9.56.26",
-      "@react-three/fiber": "^8.11.5",
-      "@theatre/core": "^0.5.1",
-      "@theatre/r3f": "^0.5.1",
-      "@theatre/studio": "^0.5.1",
-      "leva": "^0.9.34",
-      "r3f-perf": "^7.1.2",
-      "react-device-detect": "^2.2.3",
-      "react-hook-screen-orientation": "^1.0.4",
-      "react-terminal-ui": "^1.0.1",
-      "three": "^0.150.0",
-      "zustand": "^4.3.3"
+        "@react-spring/three": "^9.7.1",
+        "@react-three/drei": "^9.56.26",
+        "@react-three/fiber": "^8.11.5",
+        "@theatre/core": "^0.5.1",
+        "@theatre/r3f": "^0.5.1",
+        "@theatre/studio": "^0.5.1",
+        "leva": "^0.9.34",
+        "r3f-perf": "^7.1.2",
+        "react-device-detect": "^2.2.3",
+        "react-hook-screen-orientation": "^1.0.4",
+        "react-terminal-ui": "^1.0.1",
+        "sass": "^1.60.0",
+        "three": "^0.150.0",
+        "zustand": "^4.3.3"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",

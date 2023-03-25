@@ -1,0 +1,19 @@
+
+/*Create a navbar*/
+.navbar-container {
+  display: flex;
+  background-color: white;
+  height: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  flex-grow: 1;
+
+  .navbar-container_header {
+    align-self: center;
+  }
+
+  .navbar-container_input {
+    align-self: center;
+  }
+
+
+}
