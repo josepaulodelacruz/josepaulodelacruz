@@ -6,17 +6,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use \App\Http\Controllers\Admin\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
@@ -27,18 +16,10 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-///Testing purposes
-Route::get('/jose', function() {
-  return Inertia::render('Test/Jose');
-})->name('jose');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware(['auth', 'verified'])->group(function() {
-  Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-  Route::get('/admin/blogs', [AdminController::class, 'blogIndex'])->name('admin.blogs');
+  Route::get('/panel', [AdminController::class, 'index'])->name('panel');
+  Route::get('/panel/projects', [AdminController::class, 'projectIndex'])->name('panel.projects');
+  Route::get('/panel/blogs', [AdminController::class, 'blogIndex'])->name('panel.blogs');
 });
 
 Route::middleware('auth')->group(function () {

@@ -3,8 +3,6 @@ import Navbar from "@/Components/Navbar";
 import {adminStore} from "@/stores/adminStore";
 
 function AdminLayout({children}) {
-  const { triggerSidebar } = adminStore(state => state)
-
 
   return(
     <div className="flex">
