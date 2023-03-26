@@ -11,8 +11,8 @@ function AdminLayout({children}) {
       <div className="flex flex-col w-full bg-gray-100">
         <Navbar/>
         <main className="w-full h-full">
-          <div className="pl-9 pr-9 pt-9 h-full">
-            <section className="max-w-7xl h-full">
+          <div className="h-full">
+            <section style={{maxWidth: '1600px'}} className="h-full">
               {children}
             </section>
           </div>

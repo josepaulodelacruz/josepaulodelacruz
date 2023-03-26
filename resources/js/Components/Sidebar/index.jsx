@@ -38,7 +38,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`${isSidebarOpen ? 'w-72' : 'w-20'} items-stretch flex flex-col p-5 pt-8 duration-200 relative bg-primary shadow min-h-screen`}
+      className={`${isSidebarOpen ? 'w-72' : 'w-20'} items-stretch flex flex-col p-5 pt-8 duration-200 relative bg-blue-900 shadow min-h-screen`}
     >
       <div className={`absolute cursor-pointer -right-6 top-8 w-12 h-12 bg-white border-dark-purple
            border-2 rounded-full`}>
