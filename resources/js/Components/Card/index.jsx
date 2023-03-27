@@ -2,7 +2,7 @@ import Chip from "@/Components/Chip";
 
 function Card() {
   return (
-    <div className="flex flex-col bg-white shadow-sm rounded sm:grow md:w-40">
+    <div className="flex flex-col bg-white shadow-sm rounded sm:grow md:w-40 min-w-min">
 
       <div className="grow h-60 w-full"/>
 

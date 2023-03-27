@@ -1,11 +1,13 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import Card from "@/Components/Card";
+import Chip from '@/Components/Chip'
+import { Button } from 'antd'
+import ListTile from '@/Components/ListTile'
 
 function Projects(){
   return(
     <AdminLayout>
       <div className="flex flex-col">
-        {/*<h2 className="text-text_primary_color font-sans font-black">List of Projects</h2>*/}
         <div className="flex sm:justify-between content-center flex-col">
 
           <div className="p-6 flex flex-col md:flex-row">
@@ -29,11 +31,48 @@ function Projects(){
           </div>
 
 
+          <div className="flex h-0.5 bg-gray-300 grow mx-6"/>
+
+          <div className="flex flex-col md:flex-row grow mx-6 my-8 gap-4">
+            <div className="flex-1 flex-col bg-white rounded shadow-md p-4">
+              <span className="text-sm font-light">Most View Projects</span>
+              <ListTile />
+              <ListTile />
+              <ListTile />
+              <ListTile />
+              <ListTile />
+            </div>
+            <div className="flex-1">
+              <div className="flex-1 flex-col bg-white rounded shadow-md p-4">
+                <span className="text-sm font-light">Most recent projects</span>
+                <ListTile/>
+                <ListTile />
+                <ListTile />
+                <ListTile />
+                <ListTile />
+              </div>
+            </div>
+
+          </div>
+
           {/*Create a horizontal line with a full width*/}
           <div className="flex h-0.5 bg-gray-300 grow mx-6"/>
 
           <div className="flex flex-col md:pl-6 md:mt-3">
-            <span className="text-xl font-semibold mb-6">List of projects</span>
+            <div className="flex flex-col md:flex-row ">
+              <div className="flex flex-row flex-1 flex-wrap items-center mb-4">
+                <span className="text-xl font-semibold flex self-center mr-4">List of projects</span>
+                <Chip />
+                <Chip />
+                <Chip />
+              </div>
+
+              <Button onClick={() => console.log('add')} className="bg-blue-900 text-white md:mr-6" >
+                Add Project
+              </Button>
+
+            </div>
+
             <div className="flex grow flex-col md:flex-row gap-4">
               <Card />
               <Card />
@@ -44,13 +83,13 @@ function Projects(){
 
           </div>
 
-
-
         </div>
 
       </div>
     </AdminLayout>
   )
 }
+
+
 
 export default Projects
