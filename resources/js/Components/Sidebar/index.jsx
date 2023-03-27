@@ -56,7 +56,7 @@ function Sidebar() {
           !isSidebarOpen && "scale-0"
         }`}
       >
-        Jose
+        Jose Paulo
       </Link>
 
       {/*I want the material-icons at the edge right side*/}

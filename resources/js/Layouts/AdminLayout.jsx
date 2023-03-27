@@ -1,11 +1,13 @@
 import Sidebar from '@/Components/Sidebar'
 import Navbar from "@/Components/Navbar";
 import {adminStore} from "@/stores/adminStore";
+import StickyBox from "react-sticky-box";
 
 function AdminLayout({children}) {
 
   return(
-    <div className="flex">
+    <div style={{height: '100vh'}} className="flex">
+
       <Sidebar />
 
       <div className="flex flex-col w-full bg-gray-100">

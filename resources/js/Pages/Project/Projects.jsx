@@ -26,17 +26,15 @@ function Projects(){
                 </button>
               </div>
             </div>
-
-
           </div>
 
 
           {/*Create a horizontal line with a full width*/}
-          {/*<div className="w-full h-0.5 bg-gray-300 my-5"/>*/}
+          <div className="flex h-0.5 bg-gray-300 grow mx-6"/>
 
-          <div className="flex flex-col pl-6">
-            <span className="text-md font-semibold">List of projects</span>
-            <div className="flex grow sm:flex-col md:flex-row">
+          <div className="flex flex-col md:pl-6 md:mt-3">
+            <span className="text-xl font-semibold mb-6">List of projects</span>
+            <div className="flex grow flex-col md:flex-row gap-4">
               <Card />
               <Card />
               <Card />
