@@ -5,6 +5,9 @@
         "build": "vite build"
     },
     "dependencies": {
+        "@chakra-ui/react": "^2.5.4",
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
         "@react-spring/three": "^9.7.1",
         "@react-three/drei": "^9.56.26",
         "@react-three/fiber": "^8.11.5",
@@ -12,6 +15,7 @@
         "@theatre/r3f": "^0.5.1",
         "@theatre/studio": "^0.5.1",
         "antd": "^5.3.2",
+        "framer-motion": "^10.9.4",
         "leva": "^0.9.34",
         "r3f-perf": "^7.1.2",
         "react-device-detect": "^2.2.3",
