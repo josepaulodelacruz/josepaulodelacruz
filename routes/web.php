@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel', [AdminController::class, 'index'])->name('panel');
   Route::get('/panel/projects', [AdminController::class, 'projectIndex'])->name('panel.projects');
+  Route::get('/panel/projects/add', [AdminController::class, 'projectAdd'])->name('panel.projects.add');
   Route::get('/panel/blogs', [AdminController::class, 'blogIndex'])->name('panel.blogs');
 });
 

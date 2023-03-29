@@ -9,18 +9,24 @@ use Inertia\Inertia;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-      return Inertia::render('Panel');
-    }
+  public function index()
+  {
+    return Inertia::render('Panel');
+  }
 
-    public function blogIndex()
-    {
-      return Inertia::render('Blog/Blog');
-    }
+  public function blogIndex()
+  {
+    return Inertia::render('Blog/Blog');
+  }
 
   public function projectIndex()
   {
     return Inertia::render('Project/Projects');
   }
+
+  public function projectAdd()
+  {
+    return Inertia::render('Project/ProjectAdd');
+  }
+
 }
