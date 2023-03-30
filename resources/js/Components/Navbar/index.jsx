@@ -2,10 +2,12 @@ import { adminStore } from "@/stores/adminStore";
 import './index.scss'
 
 function Navbar(){
+  const { triggerSidebar } = adminStore(state => state)
+
   return (
-    <nav className="flex grow py-4 px-3 bg-white w-full shadow-md">
-       <div className="pl-6 py-3 self-center">
-         {/*<span className="text-2xl text-blue-900 font-sans font-black">Projects</span>*/}
+    <nav className="flex grow py-2 px-3 bg-white w-full shadow-md">
+       <div className="pl-6 py-6 self-center">
+        {/*<span className="material-icons text-2xl text-gray-600 cursor-pointer" onClick={() => adminStore.triggerSidebar()}>&#xe5d2;</span>*/}
        </div>
 
       {/*Create a input center inside the nav*/}

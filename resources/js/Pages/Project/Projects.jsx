@@ -73,7 +73,10 @@ function Projects(){
 
             </div>
 
-            <div className="flex grow flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row flex-wrap gap-4 md:pr-6">
+              <Card />
+              <Card />
+              <Card />
               <Card />
               <Card />
               <Card />
