@@ -107,10 +107,9 @@ const { TextArea } = Input
 
         <div className="mb-6">
           <span className="text-lg font-semibold">Additional Details</span>
-          <div className="flex bg-white shadow rounded h-60 mr-6">
-            <div className="flex justify-center items-center w-full">
+          <div className="flex bg-white shadow rounded h-60 mr-6 ">
+            <div className="flex justify-center items-center w-full ">
               Upload
-
             </div>
 
           </div>

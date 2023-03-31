@@ -17,7 +17,7 @@ const Menus = [
       {title: "Add/Edit Blogs"},
     ]
   },
-  {title: "Categories", gap: true},
+  {title: "Categories", gap: true, menuUrl: '/panel/categories', href: route('panel.categories') },
   {title: "Tutorials",},
   {title: "Analytics",},
   {title: "Files ", gap: true},
@@ -38,7 +38,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`${isSidebarOpen ? 'w-72 pt-8 p-5' : 'w-0 md:w-20 md:pt-8 md:p-5'} items-stretch flex flex-col duration-200 fixed md:sticky top-0 bg-blue-900 shadow min-h-screen`}
+      className={`${isSidebarOpen ? 'w-72 pt-8 p-5' : 'w-0 md:w-20 md:pt-8 md:p-5'} z-10 items-stretch flex flex-col duration-200 fixed md:sticky top-0 bg-blue-900 shadow min-h-screen`}
       style={{height: '100vh'}}
     >
       <div className={`absolute cursor-pointer -right-6 top-8 w-12 h-12 bg-white border-dark-purple
@@ -71,6 +71,7 @@ function Sidebar() {
             handleToggleSubMenu={_handleToggleSubMenu}
             toggledMenu={toggledMenu}
             isSidebarOpen={isSidebarOpen}
+            href={Menu.href ?? null}
           />
 
         ))}

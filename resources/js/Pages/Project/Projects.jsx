@@ -67,7 +67,7 @@ function Projects(){
                 <Chip />
               </div>
 
-              <Button href={route('panel.projects.add')} className="bg-blue-900 text-white md:mr-6" >
+              <Button href={route('panel.projects.add')} className="z-1 bg-blue-900 text-white md:mr-6" >
                 Add Project
               </Button>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Inertia\Inertia;
@@ -27,6 +28,14 @@ class AdminController extends Controller
   public function projectAdd()
   {
     return Inertia::render('Project/ProjectAdd');
+  }
+
+  public function categories()
+  {
+    //get categories
+    $categories = Category::all();
+
+    return Inertia::render('Categories/index', ['categories' => $categories]);
   }
 
 }
