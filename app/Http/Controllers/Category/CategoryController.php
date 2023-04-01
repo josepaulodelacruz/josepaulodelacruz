@@ -11,8 +11,15 @@ class CategoryController extends Controller
 {
   public function store(Request $request)
   {
+    //validate $request
+    $request->validateWithBag('categoryForm', [
+      'name' => 'required|string|max:255|unique:categories,name',
+      'icon' => 'required|string|max:255',
+    ]);
+
     $data = Category::create([
       'name' => $request->name,
+      'icon_code' => $request->icon,
     ]);
   }
 

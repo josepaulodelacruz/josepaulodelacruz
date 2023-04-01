@@ -1,15 +1,18 @@
 import AdminLayout from '@/Layouts/AdminLayout'
-import { Button, Table, Space, Input } from 'antd'
+import { Button, Table, Space, Input, message } from 'antd'
 import ListTile from '@/Components/ListTile'
 import Modal from '@/Components/Modal'
 import { useEffect, useState } from 'react'
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
 
 ;
 
 function Index ({categories}) {
+  const [messageApi, contextHolder] = message.useMessage()
+  const { errors } = usePage().props
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [data, setData] = useState(categories)
+  const [isEdit, setIsEdit] = useState(false)
   const [values, setValues] = useState({
     'name': '',
     'icon': '',
@@ -46,12 +49,23 @@ function Index ({categories}) {
   ]
 
   useEffect(() => {
+    if(errors.categoryForm) {
+      //loop through the categoryForm error bag then show message.warning
+      Object.keys(errors.categoryForm).forEach((key) => {
+        messageApi.warning(errors.categoryForm[key])
+      })
+    }
+  }, [errors])
+
+  useEffect(() => {
+    console.log(categories)
     setData(categories)
   }, [categories])
 
 
-  const _handleModal = (cond) => {
-    setIsModalVisible(cond);
+  const _handleModal = (cond, isEdit = false) => {
+    setIsEdit(isEdit)
+    setIsModalVisible(cond)
   }
 
   const _handleFormInput = ({e, field}) => {
@@ -65,17 +79,20 @@ function Index ({categories}) {
     setValues({
       ...record,
     })
-    _handleModal(true);
+    _handleModal(true, true);
   }
 
   const _handleSubmitForm = () => {
-    router.post('/panel/categories/add', values)
+    router.post('/panel/categories/add', values, {
+      errorBag: 'categoryForm'
+    })
+
     _handleModal(false);
   }
 
   return(
     <AdminLayout>
-
+      {contextHolder}
       <div className="flex flex-col pt-6 md:px-6 ">
 
         <div className="flex justify-between items-center px-6 md:p-0">
@@ -132,7 +149,10 @@ function Index ({categories}) {
             bordered
             dataSource={data}
             columns={columns}
-          />
+          >
+         {/*Insert icon code and render icon*/}
+
+          </Table>
         </div>
 
       </div>
@@ -140,28 +160,30 @@ function Index ({categories}) {
       <Modal
         show={isModalVisible}
         closeable={true}
-        onClose={() => _handleModal(false)}
+        onClose={() => _handleModal(false, false)}
       >
         <div className="flex flex-col p-4 ">
-          <span className="text-2xl font-semibold ">Add Category </span>
+          <span className="text-2xl font-semibold ">{isEdit ? 'Edit' : 'Add'} Category </span>
           <div className="flex h-0.5 bg-gray-300 grow my-2"/>
           <div className="py-2">
             <span className="text-md font-medium">Name</span>
-            <Input onChange={(e) => _handleFormInput({e: e, field: 'name'})} placeholder="Category Name" rootClassName="rounded-md" />
+            <Input
+              value={values.name}
+              onChange={(e) => _handleFormInput({e: e, field: 'name'})} placeholder="Category Name" rootClassName="rounded-md" />
           </div>
           <div className="py-2">
             <span className="text-md font-medium">Icon</span>
-            <button className="flex bg-gray-100 h-40 justify-center items-center w-full rounded">
-              Add Icon
-            </button>
+            <Input
+              value={values.icon}
+              onChange={(e) => _handleFormInput({e: e, field: 'icon'})} placeholder="Category Icon" rootClassName="rounded-md" />
           </div>
 
           <div className="flex justify-end py-3 gap-4">
-            <Button onClick={() => _handleModal(false)}>
+            <Button onClick={() => _handleModal(false, false)}>
               Cancel
             </Button>
             <Button onClick={_handleSubmitForm} className="text-white bg-blue-900">
-              Add Category
+              {isEdit ? 'Edit' : 'Add'} Category
             </Button>
           </div>
 
