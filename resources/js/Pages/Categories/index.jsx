@@ -134,8 +134,6 @@ function Index ({categories}) {
 
         </div>
 
-
-
         <div className="flex h-0.5 bg-gray-300 grow mt-3"/>
 
         <div className="flex flex-col my-3">
@@ -148,10 +146,28 @@ function Index ({categories}) {
             rowKey={(record) => record.id}
             bordered
             dataSource={data}
-            columns={columns}
+            // columns={columns}
           >
          {/*Insert icon code and render icon*/}
-
+            <Table.Column title="Name" dataIndex="name" key="name" />
+            <Table.Column
+              title="Icon"
+              dataIndex="icon_code"
+              key="icon"
+              render={(val, record) => (
+                <span className="material-icons" dangerouslySetInnerHTML={{__html:val}}/>
+              )}
+            />
+            <Table.Column
+              title="Action"
+              width={'10%'}
+              render={(_, record) => (
+                <Space size="middle">
+                  <Button onClick={() => _handleEditForm(record)}>Edit</Button>
+                  <Button onClick={() => router.delete(`/panel/categories/delete/${record.id}`)}>Delete</Button>
+                </Space>
+              )}
+            />
           </Table>
         </div>
 
