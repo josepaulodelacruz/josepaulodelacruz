@@ -18,36 +18,6 @@ function Index ({categories}) {
     'icon': '',
   })
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      width: '40%',
-      // onCell: (_, index) => ({rowSpan: 1}),
-    },
-    {
-      title: 'Icons',
-      dataIndex: 'icon',
-      key: 'icon',
-      width: '60%',
-      // onCell: (_, index) => ({rowSpan: 1}),
-    },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      key: 'action',
-      width: '10%',
-      // onCell: (_, index) => ({rowSpan: 1}),
-      render: (_, record) => (
-        <Space size="middle">
-          <Button onClick={() => _handleEditForm(record)}>Edit</Button>
-          <Button onClick={() => router.delete(`/panel/categories/delete/${record.id}`)}>Delete</Button>
-        </Space>
-      ),
-    },
-  ]
-
   useEffect(() => {
     if(errors.categoryForm) {
       //loop through the categoryForm error bag then show message.warning
@@ -190,7 +160,7 @@ function Index ({categories}) {
           <div className="py-2">
             <span className="text-md font-medium">Icon</span>
             <Input
-              value={values.icon}
+              value={values.icon_code}
               onChange={(e) => _handleFormInput({e: e, field: 'icon'})} placeholder="Category Icon" rootClassName="rounded-md" />
           </div>
 

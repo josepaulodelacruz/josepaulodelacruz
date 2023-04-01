@@ -6,22 +6,22 @@ import MenuOption from "@/Components/Sidebar/MenuOption";
 
 const Menus = [
   {
-    title: "Projects", menuUrl: '/panel/projects', subMenus: [
+    title: "Projects", menuUrl: '/panel/projects', icon: '&#xe02f;', subMenus: [
       {title: "View Projects", href: route('panel.projects')},
       {title: "Add/Edit Projects"},
     ]
   },
   {
-    title: "Blogs", menuUrl: '/panel/blogs',  subMenus: [
+    title: "Blogs", menuUrl: '/panel/blogs', icon: '&#xf009;',  subMenus: [
       {title: "View Blogs", href: route('panel.blogs')},
       {title: "Add/Edit Blogs"},
     ]
   },
-  {title: "Categories", gap: true, menuUrl: '/panel/categories', href: route('panel.categories') },
-  {title: "Tutorials",},
-  {title: "Analytics",},
-  {title: "Files ", gap: true},
-  {title: "Setting",},
+  {title: "Categories", gap: true, icon: '&#xe574;', menuUrl: '/panel/categories', href: route('panel.categories') },
+  {title: "Tutorials", icon: '&#xefec;'},
+  {title: "Analytics", icon: '&#xef3e;'},
+  {title: "Files ", gap: true, icon: '&#xe2c7;' },
+  {title: "Setting", icon: '&#xe8b8;'},
 ];
 
 
@@ -78,7 +78,7 @@ function Sidebar() {
       </ul>
 
       <div className="flex text-white h-full items-end">
-        <div className="h-6 w-6 rounded-full bg-white"/>
+        <span className="material-icons">&#xe9ba;</span>
         <span className={`${!isSidebarOpen && "hidden"} pl-3 origin-left duration-200`}>
          Logout
         </span>
