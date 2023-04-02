@@ -17,8 +17,8 @@ function MenuOption ({Menu, index, handleToggleSubMenu, isSidebarOpen, toggledMe
         {/*<div className="h-6 w-6 rounded-full bg-white"/>*/}
         {Menu.icon && <span className="material-icons" dangerouslySetInnerHTML={{__html: Menu.icon}}/>}
         <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 pl-3`}>
-                {Menu.title}
-            </span>
+            {Menu.title}
+        </span>
         {/*Force the element to be at the edge*/}
         <div className="flex-1"/>
         <span
@@ -33,7 +33,8 @@ function MenuOption ({Menu, index, handleToggleSubMenu, isSidebarOpen, toggledMe
             href={subMenu.href ?? null} key={subIndex}
             className={`${!isSidebarOpen && 'hidden'} hover:bg-blue-500 rounded
                   duration-200 text-gray-300 bg-light-white text-sm py-2 flex flex-row justify-start content-center`}>
-            <div className={`${!isSidebarOpen && 'hidden'} h-4 w-4 ml-4 mr-2 rounded-full bg-white self-center `}/>
+            {/*<div className={`${!isSidebarOpen && 'hidden'} h-4 w-4 ml-4 mr-2 rounded-full bg-white self-center `}/>*/}
+            {subMenu.icon && <span className="material-icons text-sm ml-4 mr-2" dangerouslySetInnerHTML={{__html: subMenu.icon}}/>}
             {subMenu.title}
           </Link>
         ))}

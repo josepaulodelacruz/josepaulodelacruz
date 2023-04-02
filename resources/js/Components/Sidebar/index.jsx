@@ -2,19 +2,20 @@ import {useEffect, useState} from "react"
 import {Link, router, usePage} from '@inertiajs/react'
 import {adminStore} from "@/stores/adminStore"
 import MenuOption from "@/Components/Sidebar/MenuOption";
+import { Button } from 'antd'
 
 
 const Menus = [
   {
     title: "Projects", menuUrl: '/panel/projects', icon: '&#xe02f;', subMenus: [
-      {title: "View Projects", href: route('panel.projects')},
-      {title: "Add/Edit Projects"},
+      {title: "View Projects", href: route('panel.projects'), icon: '&#xe8f4;'},
+      {title: "Add/Edit Projects", icon: '&#xe598;'},
     ]
   },
   {
     title: "Blogs", menuUrl: '/panel/blogs', icon: '&#xf009;',  subMenus: [
-      {title: "View Blogs", href: route('panel.blogs')},
-      {title: "Add/Edit Blogs"},
+      {title: "View Blogs", href: route('panel.blogs'), icon: '&#xe8f4;'},
+      {title: "Add/Edit Blogs", icon: '&#xe598;'},
     ]
   },
   {title: "Categories", gap: true, icon: '&#xe574;', menuUrl: '/panel/categories', href: route('panel.categories') },
@@ -41,9 +42,7 @@ function Sidebar() {
       className={`${isSidebarOpen ? 'w-72 pt-8 p-5' : 'w-0 md:w-20 md:pt-8 md:p-5'} z-10 items-stretch flex flex-col duration-200 fixed md:sticky top-0 bg-blue-900 shadow min-h-screen`}
       style={{height: '100vh'}}
     >
-      <div className={`absolute cursor-pointer -right-6 top-8 w-12 h-12 bg-white border-dark-purple
-
-           border-2 rounded-full`}>
+      <div className={`absolute cursor-pointer -right-6 top-8 w-12 h-12 bg-white border-dark-purple border-2 rounded-full`}>
         <button
           onClick={() => triggerSidebar()}
           className="flex items-center justify-center w-full h-full">
@@ -61,7 +60,6 @@ function Sidebar() {
         Jose Paulo
       </Link>
 
-      {/*I want the material-icons at the edge right side*/}
       <ul className="pt-6 flex-col flex">
         {Menus.map((Menu, index) => (
           <MenuOption

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use \App\Http\Controllers\Admin\AdminController;
 use \App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Admin\ProjectController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -27,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::post('/panel/categories/add', [CategoryController::class, 'store'])->name('panel.categories.add');
   Route::delete('/panel/categories/delete/{id}', [CategoryController::class, 'destroy'])->name('panel.categories.delete');
 
+  //projects
+  Route::post('/panel/projects/add', [ProjectController::class, 'addProject']);
 
 });
 
