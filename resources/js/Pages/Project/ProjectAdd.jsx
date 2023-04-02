@@ -2,24 +2,25 @@ import AdminLayout from '@/Layouts/AdminLayout'
 import { Input, Select, Button, Upload } from 'antd'
 import './index.scss'
 import { router, useForm } from '@inertiajs/react'
+import InputError from "@/Components/InputError";
 
+//TODO able to add multiple categories
 
-function ProjectAdd () {
+function ProjectAdd ({categories}) {
   const { data, setData, post, processing, errors, reset } = useForm({
-    name: '',
+    title: '',
     description: '',
     host_link: '',
     source_code: '',
+    categories: [],
     project_image_path: ''
   });
+
 
   //submit project
   const _handleSubmitProject = (e) => {
     e.preventDefault()
-    console.log(data.name)
-    console.log('submit project')
-    console.log(errors)
-
+    post(route('project.categories.addProject'))
   }
 
 
@@ -36,7 +37,7 @@ function ProjectAdd () {
 
         <div className="flex flex-row justify-between content-center items-center pt-6 pr-6">
           <span className="text-2xl font-semibold">Add Project</span>
-          <Button onClick={_handleSubmitProject} className="bg-blue-900 text-md text-white ">
+          <Button disabled={processing} onClick={_handleSubmitProject} className="bg-blue-900 text-md text-white ">
             Submit Project
           </Button>
         </div>
@@ -45,10 +46,16 @@ function ProjectAdd () {
           <div className="flex flex-col flex-1 rounded p-4 bg-white shadow-md">
             <InputSection
               field="Title"
-              value={data.name}
+              value={data.title}
               required
-              onChange={(e) => setData('name', e.target.value) }/>
-            <InputSection field="Description"/>
+              onChange={(e) => setData('title', e.target.value) }/>
+            <InputError message={errors?.projectFormBag?.title} className="pl-2"/>
+            <InputSection
+              value={data.description}
+              required
+              onChange={(e) => setData('description', e.target.value)}
+              field="Description"/>
+            <InputError message={errors?.projectFormBag?.description} className="pl-2"/>
 
             <div className="m-2 flex flex-row items-center">
               <span className="text-md font-bold text-blue-900">Category:</span>
@@ -58,33 +65,25 @@ function ProjectAdd () {
                     style={{ width: '100%' }}
                     onChange={null}
                     tokenSeparators={[',']}
-                    options={[
-                      {
-                        value: 'jack',
-                        label: 'Jack',
-                      },
-                      {
-                        value: 'lucy',
-                        label: 'Lucy',
-                      },
-                      {
-                        value: 'Yiminghe',
-                        label: 'yiminghe',
-                      },
-                      {
-                        value: 'disabled',
-                        label: 'Disabled',
-                        disabled: true,
-                      },
-                    ]}
+                    options={categories}
                   />
 
               </div>
             </div>
           </div>
           <div className="flex flex-col flex-1 rounded p-4 bg-white shadow-md">
-            <InputSection field="URL Hosting Link"/>
-            <InputSection field="Source Code"/>
+            <InputSection
+              value={data.host_link}
+              required
+              onChange={(e) => setData('host_link', e.target.value)}
+              field="URL Hosting Link"/>
+            <InputError message={errors?.projectFormBag?.host_link} className="pl-2"/>
+            <InputSection
+              value={data.source_code}
+              required
+              onChange={(e) => setData('source_code', e.target.value)}
+              field="Source Code"/>
+            <InputError message={errors?.projectFormBag?.source_code} className="pl-2"/>
             <div className="m-2 flex flex-row items-center">
               <span className="text-md font-bold text-blue-900">Meta Tags:</span>
               <div className="grow ml-3 p-2 ">

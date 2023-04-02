@@ -5,9 +5,6 @@
         "build": "vite build"
     },
     "dependencies": {
-        "@chakra-ui/react": "^2.5.4",
-        "@emotion/react": "^11.10.6",
-        "@emotion/styled": "^11.10.6",
         "@react-spring/three": "^9.7.1",
         "@react-three/drei": "^9.56.26",
         "@react-three/fiber": "^8.11.5",
@@ -20,7 +17,6 @@
         "r3f-perf": "^7.1.2",
         "react-device-detect": "^2.2.3",
         "react-hook-screen-orientation": "^1.0.4",
-        "react-scrollmagic-r18": "^1.0.3",
         "react-terminal-ui": "^1.0.1",
         "sass": "^1.60.0",
         "three": "^0.150.0",

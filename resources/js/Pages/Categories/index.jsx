@@ -28,7 +28,6 @@ function Index ({categories}) {
   }, [errors])
 
   useEffect(() => {
-    console.log(categories)
     setData(categories)
   }, [categories])
 
@@ -119,7 +118,7 @@ function Index ({categories}) {
             // columns={columns}
           >
          {/*Insert icon code and render icon*/}
-            <Table.Column title="Name" dataIndex="name" key="name" />
+            <Table.Column title="Name" dataIndex="value" key="value" />
             <Table.Column
               title="Icon"
               dataIndex="icon_code"

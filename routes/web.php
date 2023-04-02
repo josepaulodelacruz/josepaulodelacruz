@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::delete('/panel/categories/delete/{id}', [CategoryController::class, 'destroy'])->name('panel.categories.delete');
 
   //projects
-  Route::post('/panel/projects/add', [ProjectController::class, 'addProject']);
+  Route::post('/panel/projects/add', [ProjectController::class, 'addProject'])->name('project.categories.addProject');
 
 });
 

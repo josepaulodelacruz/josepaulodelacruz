@@ -13,12 +13,13 @@ class CategoryController extends Controller
   {
     //validate $request
     $request->validateWithBag('categoryForm', [
-      'name' => 'required|string|max:255|unique:categories,name',
+      'name' => 'required|string|max:255|unique:categories,value',
       'icon' => 'required|string|max:255',
     ]);
 
     $data = Category::create([
-      'name' => $request->name,
+      'value' => $request->name,
+      'label' => $request->name,
       'icon_code' => $request->icon,
     ]);
   }

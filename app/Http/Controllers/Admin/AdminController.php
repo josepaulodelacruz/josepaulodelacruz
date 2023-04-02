@@ -27,7 +27,11 @@ class AdminController extends Controller
 
   public function projectAdd()
   {
-    return Inertia::render('Project/ProjectAdd');
+    $categories = Category::all();
+
+    return Inertia::render('Project/ProjectAdd', [
+      'categories' => $categories,
+    ]);
   }
 
   public function categories()
