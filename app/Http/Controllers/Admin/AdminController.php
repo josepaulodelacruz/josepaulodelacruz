@@ -27,7 +27,7 @@ class AdminController extends Controller
 
   public function projectAdd()
   {
-    $categories = Category::all();
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
 
     return Inertia::render('Project/ProjectAdd', [
       'categories' => $categories,
@@ -39,7 +39,10 @@ class AdminController extends Controller
     //get categories
     $categories = Category::all();
 
-    return Inertia::render('Categories/index', ['categories' => $categories]);
+    //get categories latest 5
+    $categoriesLatest = Category::latest()->take(5)->get();
+
+    return Inertia::render('Categories/index', ['categories' => $categories, 'categoriesLatest' => $categoriesLatest]);
   }
 
 }

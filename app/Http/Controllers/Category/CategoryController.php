@@ -17,7 +17,16 @@ class CategoryController extends Controller
       'icon' => 'required|string|max:255',
     ]);
 
-    $data = Category::create([
+    if(isset($request->id)) {
+      Category::find($request->id)->update([
+        'value' => $request->name,
+        'label' => $request->name,
+        'icon_code' => $request->icon,
+      ]);
+      return;
+    }
+
+    Category::create([
       'value' => $request->name,
       'label' => $request->name,
       'icon_code' => $request->icon,

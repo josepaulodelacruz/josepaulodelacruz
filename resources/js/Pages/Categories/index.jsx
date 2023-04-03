@@ -7,7 +7,7 @@ import { router, usePage } from '@inertiajs/react'
 
 ;
 
-function Index ({categories}) {
+function Index ({categories, categoriesLatest}) {
   const [messageApi, contextHolder] = message.useMessage()
   const { errors } = usePage().props
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -33,8 +33,17 @@ function Index ({categories}) {
 
 
   const _handleModal = (cond, isEdit = false) => {
+
     setIsEdit(isEdit)
     setIsModalVisible(cond)
+
+    if(!isEdit) {
+      setValues({
+        name: '',
+        icon: '',
+      })
+    }
+
   }
 
   const _handleFormInput = ({e, field}) => {
@@ -46,6 +55,7 @@ function Index ({categories}) {
 
   const _handleEditForm = (record) => {
     setValues({
+      id: record.id,
       name: record.value,
       icon: record.icon_code,
     })
@@ -53,9 +63,17 @@ function Index ({categories}) {
   }
 
   const _handleSubmitForm = () => {
-    router.post('/panel/categories/add', values, {
-      errorBag: 'categoryForm'
-    })
+    if(!isEdit) {
+      router.post('/panel/categories/add', values, {
+        errorBag: 'categoryForm'
+      })
+    } else {
+      console.log(values)
+      router.post(`/panel/categories/add`, values, {
+        errorBag: 'categoryForm'
+      })
+    }
+
 
     _handleModal(false);
   }
@@ -77,28 +95,29 @@ function Index ({categories}) {
 
         <div className="flex h-0.5 bg-gray-300 grow mt-3"/>
 
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col h-[275px] md:flex-row gap-4">
           <div className="flex-col flex mt-4 grow">
-            <div className="bg-white px-2 py-4 rounded shadow">
+            <div className="bg-white h-full px-2 py-4 rounded shadow">
               <span className="text-sm font-medium">Trending Categories</span>
               <div className="flex h-[1px] bg-gray-300 grow mt-3"/>
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
+
+              {/*<ListTile />*/}
+              {/*<ListTile />*/}
+              {/*<ListTile />*/}
+              {/*<ListTile />*/}
+              {/*<ListTile />*/}
             </div>
           </div>
 
           <div className="flex-col flex mt-4 grow">
-            <div className="bg-white px-2 py-4 rounded shadow">
+            <div className="bg-white h-full px-2 py-4 rounded shadow">
               <span className="text-sm font-medium">Recent Categories</span>
               <div className="flex h-[1px] bg-gray-300 grow mt-3"/>
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
+              {
+                categoriesLatest && categoriesLatest.map((category, index) => (
+                  <ListTile key={index} field={category.value} />
+                ))
+              }
             </div>
           </div>
 

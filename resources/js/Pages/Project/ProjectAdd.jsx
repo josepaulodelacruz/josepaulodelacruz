@@ -4,8 +4,6 @@ import './index.scss'
 import { router, useForm } from '@inertiajs/react'
 import InputError from "@/Components/InputError";
 
-//TODO able to add multiple categories
-
 function ProjectAdd ({categories}) {
   const { data, setData, post, processing, errors, reset } = useForm({
     title: '',
@@ -15,7 +13,6 @@ function ProjectAdd ({categories}) {
     categories: [],
     project_image_path: ''
   });
-
 
   //submit project
   const _handleSubmitProject = (e) => {
@@ -61,12 +58,14 @@ function ProjectAdd ({categories}) {
               <span className="text-md font-bold text-blue-900">Category:</span>
               <div className="grow ml-3 p-2 ">
                   <Select
+
                     mode="multiple"
                     style={{ width: '100%' }}
-                    onChange={null}
+                    onChange={(v, record) => setData('categories', record)}
                     tokenSeparators={[',']}
                     options={categories}
                   />
+                <InputError message={errors?.projectFormBag?.categories} className="pl-2"/>
 
               </div>
             </div>

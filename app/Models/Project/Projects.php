@@ -22,4 +22,9 @@ class Projects extends Model
     {
       return $this->belongsTo(User::class);
     }
+
+    public function categories()
+    {
+      return $this->hasMany(ProjectCategory::class, 'project_id');
+    }
 }
