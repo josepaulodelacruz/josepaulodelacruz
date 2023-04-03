@@ -46,7 +46,8 @@ function Index ({categories}) {
 
   const _handleEditForm = (record) => {
     setValues({
-      ...record,
+      name: record.value,
+      icon: record.icon_code,
     })
     _handleModal(true, true);
   }
@@ -118,7 +119,7 @@ function Index ({categories}) {
             // columns={columns}
           >
          {/*Insert icon code and render icon*/}
-            <Table.Column title="Name" dataIndex="value" key="value" />
+            <Table.Column title="Name" dataIndex="value" key="name" />
             <Table.Column
               title="Icon"
               dataIndex="icon_code"
@@ -153,14 +154,17 @@ function Index ({categories}) {
           <div className="py-2">
             <span className="text-md font-medium">Name</span>
             <Input
-              value={values.name}
+              defaultValue={values.name}
               onChange={(e) => _handleFormInput({e: e, field: 'name'})} placeholder="Category Name" rootClassName="rounded-md" />
           </div>
           <div className="py-2">
             <span className="text-md font-medium">Icon</span>
-            <Input
-              value={values.icon_code}
-              onChange={(e) => _handleFormInput({e: e, field: 'icon'})} placeholder="Category Icon" rootClassName="rounded-md" />
+            <div className="flex flex-row items-stretch gap-4">
+              <Input
+                defaultValue={values.icon}
+                onChange={(e) => _handleFormInput({e: e, field: 'icon'})} placeholder="Category Icon" rootClassName="rounded-md grow" />
+              <span dangerouslySetInnerHTML={{__html: values.icon}} className="material-icons px-4 py-2 bg-gray-100 rounded"/>
+            </div>
           </div>
 
           <div className="flex justify-end py-3 gap-4">
