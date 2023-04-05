@@ -1,7 +1,6 @@
 import Chip from '@/Components/Chip'
 
 function Card ({ project }) {
-  console.log(project.file)
   return (
     <div className="md:w-60">
       <div className="flex flex-col bg-white shadow-sm rounded sm:grow min-w-min">
