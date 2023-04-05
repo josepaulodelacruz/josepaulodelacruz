@@ -70,9 +70,17 @@ function Projects({projects, categories}){
             <div className="flex flex-col md:flex-row ">
               <div className="flex flex-row flex-1 flex-wrap items-center mb-4">
                 <span className="text-xl font-semibold flex self-center mr-4">List of projects</span>
-                <Chip />
-                <Chip />
-                <Chip />
+                {
+                  selectedCategories.filter(category => category.isSelected).map((category, index) => {
+                    return <Chip
+                      unSelect={(c) => {
+                        const newCategories = [...selectedCategories]
+                        newCategories[index].isSelected = !newCategories[index].isSelected
+                        setSelectedCategories(newCategories)
+                      }}
+                      key={index} category={category.value} unSelectable={true} />
+                  })
+                }
               </div>
 
               <Button href={route('panel.projects.add')} className="z-1 bg-blue-900 text-white md:mr-6" >
@@ -110,13 +118,16 @@ function Projects({projects, categories}){
               {
                 selectedCategories.map((category, index) => {
                   return(
-                    <Button>
+                    <Button onClick={() => {
+                      const newCategories = [...selectedCategories]
+                      newCategories[index].isSelected = !newCategories[index].isSelected
+                      setSelectedCategories(newCategories)
+                    }} className={`${!category.isSelected ? 'text-blue-900 bg-white' : 'text-white bg-blue-600'} duration-200`} >
                       {category.value}
                     </Button>
                   )
                 })
               }
-
             </div>
         </div>
       </Modal>
