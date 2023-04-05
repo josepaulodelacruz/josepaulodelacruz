@@ -31,11 +31,8 @@ class ProjectController extends Controller
 
     unset($data['categories']);
 
-    //create a timestamp for the project image
-    $string = time() . '.' . $request->file('files')->getClientOriginalExtension();
-
     //upload project image
-    $path = $this->uploadFile($request->file('files'), 'public/projects/'. $string . '/' .$data['title']);
+    $path = $this->uploadFile($request->file('files'), '/public/projects/' . $data['title']);
 
     //update $data with file path
     $data['file'] = $path;

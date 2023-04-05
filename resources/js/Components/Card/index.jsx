@@ -1,11 +1,13 @@
 import Chip from '@/Components/Chip'
 
 function Card ({ project }) {
+  console.log(project.file)
   return (
     <div className="md:w-60">
       <div className="flex flex-col bg-white shadow-sm rounded sm:grow min-w-min">
 
-        <div className="grow h-60 w-full"/>
+        {/*Retrieve project.file then render*/}
+        <img src={project.file} alt="project" className="rounded-t h-60 w-full object-cover" />
 
         <div className="flex flex-row">
           <div className="flex flex-col grow px-3">

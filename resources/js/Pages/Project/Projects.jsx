@@ -7,7 +7,6 @@ import { useState } from 'react'
 import Modal from '@/Components/Modal'
 import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
-import Checkbox from '@/Components/Checkbox'
 
 function Projects({projects, categories}){
   const [showFilter, setShowFilter] = useState(false)
@@ -118,7 +117,9 @@ function Projects({projects, categories}){
               {
                 selectedCategories.map((category, index) => {
                   return(
-                    <Button onClick={() => {
+                    <Button
+                      key={index}
+                      onClick={() => {
                       const newCategories = [...selectedCategories]
                       newCategories[index].isSelected = !newCategories[index].isSelected
                       setSelectedCategories(newCategories)

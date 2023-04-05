@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -24,7 +25,6 @@ class AdminController extends Controller
   {
     $projects =  $request->user()->projects()->with('categories')->get();
 
-    //get all categories then I want to attach another key to each category object with the value of isSelected and set it to false
     $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
     $categories->map(function($category) {
       $category->isSelected = false;
