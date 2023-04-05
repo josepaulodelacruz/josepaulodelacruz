@@ -15,7 +15,7 @@ class Projects extends Model
       'description',
       'host_link',
       'source_code',
-      'project_image_path',
+      'file',
     ];
 
     public function user()

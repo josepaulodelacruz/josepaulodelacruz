@@ -3,8 +3,16 @@ import Card from "@/Components/Card";
 import Chip from '@/Components/Chip'
 import { Button } from 'antd'
 import ListTile from '@/Components/ListTile'
+import { useState } from 'react'
+import Modal from '@/Components/Modal'
+import InputLabel from '@/Components/InputLabel'
+import TextInput from '@/Components/TextInput'
+import Checkbox from '@/Components/Checkbox'
 
-function Projects(){
+function Projects({projects, categories}){
+  const [showFilter, setShowFilter] = useState(false)
+  const [selectedCategories, setSelectedCategories] = useState(categories)
+
   return(
     <AdminLayout>
       <div className="flex flex-col">
@@ -18,14 +26,14 @@ function Projects(){
 
             <div className="flex flex-col sm:w-full md:flex-row md:grow md:justify-end">
               <div className="flex flex-row self-center ">
-                <button className="mr-3 p-2 bg-white shadow self-center text-md rounded flex">
+                <Button onClick={() => setShowFilter(true)} className="mr-3 bg-white shadow self-center text-md rounded flex">
                   <span className="material-icons self-center px-1" style={{fontSize: '1rem'}}>&#xe8b6;</span>
                   Filter
-                </button>
-                <button className="bg-purple p-2 shadow self-center text-white  text-md rounded flex">
+                </Button>
+                <Button className="bg-purple shadow self-center text-white  text-md rounded flex">
                   <span className="material-icons self-center px-1" style={{fontSize: '1rem'}}>&#xe8b6;</span>
                   Edit
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -74,14 +82,11 @@ function Projects(){
             </div>
 
             <div className="flex flex-col md:flex-row flex-wrap gap-4 md:pr-6">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {
+                projects.map((project, index) => {
+                  return <Card key={index} project={project} />
+                })
+              }
             </div>
 
           </div>
@@ -89,6 +94,32 @@ function Projects(){
         </div>
 
       </div>
+
+
+      <Modal
+        show={showFilter}
+        closeable={true}
+        onClose={() => setShowFilter(false)}
+      >
+        <div className="flex flex-col p-6">
+          <InputLabel value="Search Category"/>
+          <TextInput className="mb-4" />
+
+          <InputLabel value="List of categories"/>
+            <div className="flex flex-col min-h-[0px] max-h-[200px] overflow-y-auto ">
+              {
+                selectedCategories.map((category, index) => {
+                  return(
+                    <Button>
+                      {category.value}
+                    </Button>
+                  )
+                })
+              }
+
+            </div>
+        </div>
+      </Modal>
     </AdminLayout>
   )
 }

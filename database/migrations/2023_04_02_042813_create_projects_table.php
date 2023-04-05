@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('host_link');
             $table->string('source_code');
-            $table->string('project_image_path')->nullable();
+            $table->string('file');
             $table->timestamps();
         });
     }

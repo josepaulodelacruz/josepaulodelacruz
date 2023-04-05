@@ -20,9 +20,21 @@ class AdminController extends Controller
     return Inertia::render('Blog/Blog');
   }
 
-  public function projectIndex()
+  public function projectIndex(Request $request)
   {
-    return Inertia::render('Project/Projects');
+    $projects =  $request->user()->projects()->with('categories')->get();
+
+    //get all categories then I want to attach another key to each category object with the value of isSelected and set it to false
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
+    $categories->map(function($category) {
+      $category->isSelected = false;
+      return $category;
+    });
+
+    return Inertia::render('Project/Projects', [
+      'projects' => $projects,
+      'categories' => $categories,
+    ]);
   }
 
   public function projectAdd()

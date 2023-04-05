@@ -1,18 +1,22 @@
+import React, { useState } from 'react'
 import AdminLayout from '@/Layouts/AdminLayout'
-import { Input, Select, Button, Upload } from 'antd'
+import { Input, Select, Button } from 'antd'
 import './index.scss'
 import { router, useForm } from '@inertiajs/react'
-import InputError from "@/Components/InputError";
+import InputError from '@/Components/InputError'
+import Upload from '@/Components/Upload'
 
-function ProjectAdd ({categories}) {
+function ProjectAdd ({ categories }) {
+  const [showImage, setShowImage] = useState(null)
   const { data, setData, post, processing, errors, reset } = useForm({
     title: '',
     description: '',
     host_link: '',
     source_code: '',
     categories: [],
-    project_image_path: ''
-  });
+    project_image_path: '',
+    files: null,
+  })
 
   //submit project
   const _handleSubmitProject = (e) => {
@@ -20,14 +24,13 @@ function ProjectAdd ({categories}) {
     post(route('project.categories.addProject'))
   }
 
-
   return (
     <AdminLayout>
       <form onSubmit={_handleSubmitProject} className="flex flex-col pt-6 pl-6">
 
         <div className="flex self-start flex-col ">
           <span className="text-2xl font-semibold">Projects</span>
-          <span style={{fontSize: '12px'}} className="text-gray-600">Home / Projects / Add</span>
+          <span style={{ fontSize: '12px' }} className="text-gray-600">Home / Projects / Add</span>
         </div>
 
         <div className="flex h-0.5 bg-gray-300 grow mt-3 mr-6"/>
@@ -45,7 +48,7 @@ function ProjectAdd ({categories}) {
               field="Title"
               value={data.title}
               required
-              onChange={(e) => setData('title', e.target.value) }/>
+              onChange={(e) => setData('title', e.target.value)}/>
             <InputError message={errors?.projectFormBag?.title} className="pl-2"/>
             <InputSection
               value={data.description}
@@ -57,14 +60,14 @@ function ProjectAdd ({categories}) {
             <div className="m-2 flex flex-row items-center">
               <span className="text-md font-bold text-blue-900">Category:</span>
               <div className="grow ml-3 p-2 ">
-                  <Select
+                <Select
 
-                    mode="multiple"
-                    style={{ width: '100%' }}
-                    onChange={(v, record) => setData('categories', record)}
-                    tokenSeparators={[',']}
-                    options={categories}
-                  />
+                  mode="multiple"
+                  style={{ width: '100%' }}
+                  onChange={(v, record) => setData('categories', record)}
+                  tokenSeparators={[',']}
+                  options={categories}
+                />
                 <InputError message={errors?.projectFormBag?.categories} className="pl-2"/>
 
               </div>
@@ -116,7 +119,6 @@ function ProjectAdd ({categories}) {
             </div>
 
 
-
           </div>
         </div>
 
@@ -125,12 +127,32 @@ function ProjectAdd ({categories}) {
 
         <div className="mb-6">
           <span className="text-lg font-semibold">Additional Details</span>
-          <div className="flex bg-white shadow rounded h-60 mr-6 ">
+          <div className="flex bg-white relative shadow rounded h-60 mr-6 ">
             <div className="flex justify-center items-center w-full ">
-              Upload
-            </div>
+              {
+                showImage &&
+                <Button onClick={() => {
+                  setShowImage(null)
+                  setData('files', null)
+                }} className="absolute top-3 right-5 " type={'primary'}>
+                  <span className="material-icons">&#xe872;</span>
+                </Button>
+              }
 
+              {
+                showImage ? <img src={showImage} alt="project image" className="w-full h-full rounded"/> :
+                  <>
+                    <Upload
+                      onUpload={(info, url) => {
+                        setShowImage(url)
+                        setData('files', info.file)
+                      }}
+                    />
+                  </>
+              }
+            </div>
           </div>
+          <InputError message={errors?.projectFormBag?.files} className="pl-2"/>
 
 
         </div>
@@ -140,17 +162,16 @@ function ProjectAdd ({categories}) {
   )
 }
 
-function InputSection({field = "", onChange = null, value = "", required = false}) {
+function InputSection ({ field = '', onChange = null, value = '', required = false }) {
   return (
     <div className="m-2">
       <span className="text-md font-bold text-blue-900">{field}</span>
       <Input
         value={value}
         rootClassName="rounded-md"
-        onChange={onChange} />
+        onChange={onChange}/>
     </div>
   )
 }
-
 
 export default ProjectAdd
