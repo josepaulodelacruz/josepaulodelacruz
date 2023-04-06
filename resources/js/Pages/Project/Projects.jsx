@@ -9,7 +9,6 @@ import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
 
 ///TODO add the filter functionality in the future. postponed for now until major features are done
-///TODO edit project functionality
 
 function Projects({projects, categories}) {
   const [showFilter, setShowFilter] = useState(false)
@@ -97,12 +96,9 @@ function Projects({projects, categories}) {
                 projects.map((project, index) => {
                   //filter the projects by the selected categories and return the projects
                   return (
-                    <button className="flex self-start">
-                      <Card
-                        key={index}
-                        project={project}
-                      />
-                    </button>
+                    <div key={index} className="flex self-start">
+                      <Card project={project} />
+                    </div>
                   )
                 })
               }

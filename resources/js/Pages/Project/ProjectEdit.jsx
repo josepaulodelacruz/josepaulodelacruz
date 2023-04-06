@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminLayout from '@/Layouts/AdminLayout'
 import { Input, Select, Button } from 'antd'
 import './index.scss'
@@ -6,22 +6,46 @@ import { router, useForm } from '@inertiajs/react'
 import InputError from '@/Components/InputError'
 import Upload from '@/Components/Upload'
 
-function ProjectAdd ({ categories }) {
+function  ProjectEdit ({ categories, project }) {
   const [showImage, setShowImage] = useState(null)
   const { data, setData, post, processing, errors, reset } = useForm({
-    title: '',
-    description: '',
-    host_link: '',
-    source_code: '',
+    title: "",
+    description: "",
+    host_link: "",
+    source_code: "" ,
     categories: [],
-    project_image_path: '',
-    files: null,
+    files: "",
   })
+
+  useEffect(() => {
+    setShowImage(project.file)
+    // convert a fileList to a file
+    setData({
+      title: project.title,
+      description: project.description,
+      host_link: project.host_link,
+      source_code: project.source_code,
+      categories: _getCategories(),
+      files: project.file,
+    })
+  }, [])
+
+  //loop through project.categories then only return the category.id
+  const _getCategories = () => {
+    const _categories = project.categories.map((category, index) => {
+      const _selected = categories.find((cat) => cat.value === category.category)
+      return _selected
+    })
+    return _categories
+  }
+
+
+
 
   //submit project
   const _handleSubmitProject = (e) => {
     e.preventDefault()
-    post(route('project.addProject'))
+    post(route('project.editProject', project.id))
   }
 
   return (
@@ -30,15 +54,15 @@ function ProjectAdd ({ categories }) {
 
         <div className="flex self-start flex-col ">
           <span className="text-2xl font-semibold">Projects</span>
-          <span style={{ fontSize: '12px' }} className="text-gray-600">Home / Projects / Add</span>
+          <span style={{ fontSize: '12px' }} className="text-gray-600">Home / Projects / Edit</span>
         </div>
 
         <div className="flex h-0.5 bg-gray-300 grow mt-3 mr-6"/>
 
         <div className="flex flex-row justify-between content-center items-center pt-6 pr-6">
-          <span className="text-2xl font-semibold">Add Project</span>
+          <span className="text-2xl font-semibold">Edit Project</span>
           <Button disabled={processing} onClick={_handleSubmitProject} className="bg-blue-900 text-md text-white ">
-            Submit Project
+            Edit Project
           </Button>
         </div>
 
@@ -48,6 +72,7 @@ function ProjectAdd ({ categories }) {
               field="Title"
               value={data.title}
               required
+              readOnly={true}
               onChange={(e) => setData('title', e.target.value)}/>
             <InputError message={errors?.projectFormBag?.title} className="pl-2"/>
             <InputSection
@@ -67,6 +92,7 @@ function ProjectAdd ({ categories }) {
                   onChange={(v, record) => setData('categories', record)}
                   tokenSeparators={[',']}
                   options={categories}
+                  value={data.categories}
                 />
                 <InputError message={errors?.projectFormBag?.categories} className="pl-2"/>
 
@@ -162,16 +188,17 @@ function ProjectAdd ({ categories }) {
   )
 }
 
-function InputSection ({ field = '', onChange = null, value = '', required = false }) {
+function InputSection ({ field = '', onChange = null, value = '', required = false, readOnly = false }) {
   return (
     <div className="m-2">
       <span className="text-md font-bold text-blue-900">{field}</span>
       <Input
         value={value}
         rootClassName="rounded-md"
+        readOnly={readOnly}
         onChange={onChange}/>
     </div>
   )
 }
 
-export default ProjectAdd
+export default ProjectEdit

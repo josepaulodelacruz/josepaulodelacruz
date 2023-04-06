@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel', [AdminController::class, 'index'])->name('panel');
   Route::get('/panel/projects', [AdminController::class, 'projectIndex'])->name('panel.projects');
   Route::get('/panel/projects/add', [AdminController::class, 'projectAdd'])->name('panel.projects.add');
+  Route::get('/panel/projects/edit/{id}', [AdminController::class, 'projectEdit'])->name('panel.projects.edit');
   Route::get('/panel/blogs', [AdminController::class, 'blogIndex'])->name('panel.blogs');
   Route::get('/panel/categories', [AdminController::class, 'categories'])->name('panel.categories');
 
@@ -29,7 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::delete('/panel/categories/delete/{id}', [CategoryController::class, 'destroy'])->name('panel.categories.delete');
 
   //projects
-  Route::post('/panel/projects/add', [ProjectController::class, 'addProject'])->name('project.categories.addProject');
+  Route::post('/panel/projects/add', [ProjectController::class, 'addProject'])->name('project.addProject');
+  Route::post('/panel/projects/edit/{id}', [ProjectController::class, 'editProject'])->name('project.editProject');
 
 });
 

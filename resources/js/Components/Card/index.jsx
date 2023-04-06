@@ -1,30 +1,33 @@
 import Chip from '@/Components/Chip'
 import { Button } from 'antd'
+import { router } from '@inertiajs/react'
 
 function Card ({ project }) {
   return (
-    <div className="md:w-60 group aspect-video h-[400px] overflow-hidden ">
-      <div className="flex relative flex-col bg-white shadow-sm rounded sm:grow min-w-min">
+    <div className="md:w-60 group overflow-hidden">
+      <div className="flex relative flex-col bg-white shadow-sm rounded sm:grow min-w-min shadow-lg">
 
         {/*Retrieve project.file then render*/}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <img src={project.file} alt="project"
-               className="rounded h-60 object-cover w-full
+               className="rounded object-cover
              aspect-square group-hover:scale-110 transition duration-300 ease-in-out
              "
           />
-          <div className="flex absolute h-[250px] w-full inset-0 group-hover:bg-white group-hover:bg-opacity-10 aspect-square group-hover:backdrop-blur-md transition duration-300 ease-in-out backdrop-opacity-75">
+          <div className="flex absolute max-h-fit inset-0 group-hover:bg-white group-hover:bg-opacity-10 aspect-square group-hover:backdrop-blur-md transition duration-300 ease-in-out backdrop-opacity-75">
 
             <div className="flex items-center justify-center text-white grow overflow-hidden translate-y-4 ease-in-out duration-200 opacity-0  delay-75 group-hover:translate-y-0 group-hover:opacity-100">
               <div className="flex flex-row gap-6">
                 <div className="flex flex-col">
-                  <Button shape={'circle text-white block'}>
+                  <Button onClick={() => window.open(project.host_link)} shape={'circle text-white block'}>
                     <span className="material-icons text-sm text-center">&#xe8f4;</span>
                   </Button>
                   <span className="text-white text-xs font-bold">View</span>
                 </div>
                 <div className="flex flex-col">
-                  <Button shape={'circle text-white block'}>
+                  <Button onClick={() => {
+                    router.visit(`/panel/projects/edit/${project.id}`, {method: 'get'})
+                  }} shape={'circle text-white block'}>
                     <span className="material-icons text-sm">&#xe3c9;</span>
                   </Button>
                   <span className="text-white text-xs font-bold">Edit</span>

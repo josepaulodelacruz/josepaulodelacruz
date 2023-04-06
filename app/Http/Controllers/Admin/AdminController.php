@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category\Category;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Storage;
@@ -43,6 +44,18 @@ class AdminController extends Controller
 
     return Inertia::render('Project/ProjectAdd', [
       'categories' => $categories,
+    ]);
+  }
+
+  public function projectEdit($id, Request $request)
+  {
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
+
+    $project = $request->user()->projects()->where('id', $id)->with('categories')->first();
+
+    return Inertia::render('Project/ProjectEdit', [
+      'categories' => $categories,
+      'project' => $project,
     ]);
   }
 
