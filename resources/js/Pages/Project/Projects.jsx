@@ -96,10 +96,14 @@ function Projects({projects, categories}) {
               {
                 projects.map((project, index) => {
                   //filter the projects by the selected categories and return the projects
-                  return <Card
-                    key={index}
-                    project={project}
-                  />
+                  return (
+                    <button className="flex self-start">
+                      <Card
+                        key={index}
+                        project={project}
+                      />
+                    </button>
+                  )
                 })
               }
             </div>
