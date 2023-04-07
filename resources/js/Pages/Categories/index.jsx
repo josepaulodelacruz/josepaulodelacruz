@@ -95,7 +95,7 @@ function Index ({categories, categoriesLatest}) {
 
         <div className="flex h-0.5 bg-gray-300 grow mt-3"/>
 
-        <div className="flex flex-col h-[275px] md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-col flex mt-4 grow">
             <div className="bg-white h-full px-2 py-4 rounded shadow">
               <span className="text-sm font-medium">Trending Categories</span>

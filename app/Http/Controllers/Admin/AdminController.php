@@ -19,12 +19,33 @@ class AdminController extends Controller
 
   public function blogIndex()
   {
-    return Inertia::render('Blog/Blog');
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
+    $categories->map(function($category) {
+      $category->isSelected = false;
+      return $category;
+    });
+
+    return Inertia::render('Blog/Blog', [
+      'categories' => $categories,
+    ]);
+  }
+
+  public function blogAdd() {
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
+
+    return Inertia::render('Blog/AddBlog', [
+      'categories' => $categories,
+    ]);
   }
 
   public function projectIndex(Request $request)
   {
-    $projects =  $request->user()->projects()->with('categories')->get();
+    $projects =  $request->user()->projects()->with([
+      'categories',
+      'views' => function($query) {
+        $query->selectRaw('project_id, count(*) as aggregate')->groupBy('project_id');
+      }
+    ])->get();
 
     $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
     $categories->map(function($category) {

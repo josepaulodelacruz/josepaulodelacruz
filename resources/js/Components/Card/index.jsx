@@ -46,7 +46,7 @@ function Card ({ project }) {
                {project.title}
             </span>
               <div className="flex flex-row justify-center self-center">
-                <span className="text-gray-600 text-md">123</span>
+                <span className="text-gray-600 text-md">{project.views[0].aggregate}</span>
                 <span style={{ fontSize: '10px' }} className=" self-center  px-1">views</span>
               </div>
             </div>

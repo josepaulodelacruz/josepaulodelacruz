@@ -7,15 +7,9 @@ use Inertia\Inertia;
 use \App\Http\Controllers\Admin\AdminController;
 use \App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Admin\ProjectController;
+use \App\Http\Controllers\RouteController;
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');
+Route::get('/', [RouteController::class, 'home'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel', [AdminController::class, 'index'])->name('panel');
@@ -23,6 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel/projects/add', [AdminController::class, 'projectAdd'])->name('panel.projects.add');
   Route::get('/panel/projects/edit/{id}', [AdminController::class, 'projectEdit'])->name('panel.projects.edit');
   Route::get('/panel/blogs', [AdminController::class, 'blogIndex'])->name('panel.blogs');
+  Route::get('/panel/blogs/add', [AdminController::class, 'blogAdd'])->name('panel.blogs.add');
   Route::get('/panel/categories', [AdminController::class, 'categories'])->name('panel.categories');
 
   /// Categories

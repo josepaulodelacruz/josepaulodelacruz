@@ -15,7 +15,7 @@ function MenuOption ({Menu, index, handleToggleSubMenu, isSidebarOpen, toggledMe
         } `}
       >
         {/*<div className="h-6 w-6 rounded-full bg-white"/>*/}
-        {Menu.icon && <span className="material-icons p-0 m-0" dangerouslySetInnerHTML={{__html: Menu.icon}}/>}
+        {Menu.icon && <span className="material-icons p-0 m-0 overflow-hidden" dangerouslySetInnerHTML={{__html: Menu.icon}}/>}
         <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 pl-3`}>
             {Menu.title}
         </span>

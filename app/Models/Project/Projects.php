@@ -27,4 +27,9 @@ class Projects extends Model
     {
       return $this->hasMany(ProjectCategory::class, 'project_id');
     }
+
+    public function views()
+    {
+      return $this->hasMany(ProjectViews::class, 'project_id');
+    }
 }
