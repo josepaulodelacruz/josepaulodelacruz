@@ -1,5 +1,5 @@
 import AdminLayout from "@/Layouts/AdminLayout";
-import Card from "@/Components/Card";
+import { Card } from "@/Components/Card";
 import Chip from '@/Components/Chip'
 import {Button} from 'antd'
 import ListTile from '@/Components/ListTile'

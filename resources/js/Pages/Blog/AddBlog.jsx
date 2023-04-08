@@ -1,11 +1,27 @@
 import AdminLayout from '@/Layouts/AdminLayout'
-import { Button, Select } from 'antd'
-import React from 'react'
+import { Button, Input, Select } from 'antd'
+import React, { useState } from 'react'
 import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
 import InputError from '@/Components/InputError'
+import Upload from '@/Components/Upload'
+import { useForm } from '@inertiajs/react';
 
-function AddBlog () {
+function AddBlog ({categories}) {
+  const [showImage, setShowImage] = useState(null)
+  const { data, setData, post, processing, errors, reset } = useForm({
+    title: '',
+    description: '',
+    categories: [],
+    cover_photo: null,
+    host_link: '',
+  });
+
+
+  const _handleNext = () => {
+    post(route('blog.addBlog'))
+  }
+
   return (
     <AdminLayout>
       <div className="flex flex-col">
@@ -38,34 +54,82 @@ function AddBlog () {
         <div className="flex flex-row justify-between content-center items-center pt-6 pr-6 pl-6">
           <span className="text-2xl font-semibold">Add Blogs</span>
           <Button
-            onClick={null} className="bg-blue-900 text-md text-white ">
-            Submit Blog
+            onClick={_handleNext} className="bg-blue-900 text-md text-white ">
+            Next
           </Button>
         </div>
 
-        <div className="flex flex-col p-6">
+        <div className="flex flex-col md:flex-row p-6 gap-4">
 
-          <div className="flex flex-col bg-white shadow-lg p-3 rounded">
-            <InputSection label="Title" />
-            <InputSection label="Description" />
-
-            <div className="grow py-2">
-              <InputLabel > Categories</InputLabel>
-              <Select
-                mode="multiple"
-                style={{ width: '100%' }}
-                onChange={null}
-                // onChange={(v, record) => setData('categories', record)}
-                tokenSeparators={[',']}
-                options={null}
-
-              />
-              {/*<InputError message={errors?.projectFormBag?.categories} className="pl-2"/>*/}
-
+          <div className="flex flex-1 flex-col bg-white grow shadow-sm rounded ">
+            <div className="flex flex-row justify-between py-2 px-3 items-center">
+              <InputLabel >Cover Photo</InputLabel>
+              {
+                showImage &&
+                <Button onClick={() => {
+                  setShowImage(null)
+                  setData('cover_photo', null)
+                }} className="" type={'ghost'}>
+                  <span className="material-icons">&#xe5cd;</span>
+                </Button>
+              }
             </div>
+            {
+              showImage ? <img src={showImage} alt="project image" className="w-full h-full rounded py-2 px-3 rounded"/> :
+                <Upload
+                  onUpload={(info, url) => {
+                    setShowImage(url)
+                    setData('cover_photo', info.file)
+                  }}
+                />
+            }
+            <InputError message={errors?.blogAddForm?.cover_photo} className="pl-2"/>
 
           </div>
 
+          <div className="flex flex-col flex-1 bg-white grow shadow-sm p-3 rounded">
+            <InputSection
+              label="Title"
+              onChange={(e) => setData('title', e.target.value)}
+              errorMessage={errors?.blogAddForm?.title} />
+            <InputSection
+              label="Description"
+              onChange={(e) => setData('description', e.target.value)}
+              errorMessage={errors.blogAddForm?.description} />
+            <div className="grow py-2">
+              <InputLabel className="py-2"> Categories</InputLabel>
+              <Select
+                mode="multiple"
+                style={{ width: '100%' }}
+                onChange={(v, record) => setData('categories', record)}
+                tokenSeparators={[',']}
+                options={categories}
+              />
+              <InputError message={errors?.blogAddForm?.categories} className="pl-2"/>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div className="flex flex-col bg-white grow shadow-sm p-3 mx-6 mb-10 rounded">
+          <InputSection
+            label="URL host like"
+            onChange={(e) => setData('host_link', e.target.value)}
+            errorMessage={errors?.blogAddForm?.host_link} />
+          <div className="grow py-2">
+            <InputLabel className="py-2"> Meta-tags</InputLabel>
+            <Select
+              mode="multiple"
+              style={{ width: '100%' }}
+              onChange={null}
+              // onChange={(v, record) => setData('categories', record)}
+              tokenSeparators={[',']}
+              options={null}
+            />
+            {/*<InputError message={errors?.blogAddForm?.categories} className="pl-2"/>*/}
+          </div>
         </div>
 
 
@@ -77,12 +141,14 @@ function AddBlog () {
   )
 }
 
-function InputSection({label}) {
+function InputSection({label = "", errorMessage = "", onChange = () => {}}) {
   return (
     <div className="flex flex-col">
       <InputLabel className="py-2" >{label}</InputLabel>
-      <TextInput />
-      <InputError message={`${label} is required`}/>
+      <Input
+        onChange={onChange}
+        className="py-2 px-3 rounded" />
+      <InputError message={errorMessage}/>
     </div>
   )
 }

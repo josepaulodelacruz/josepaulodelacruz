@@ -17,7 +17,7 @@ class AdminController extends Controller
     return Inertia::render('Panel');
   }
 
-  public function blogIndex()
+  public function blogIndex(Request $request)
   {
     $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
     $categories->map(function($category) {
@@ -25,8 +25,16 @@ class AdminController extends Controller
       return $category;
     });
 
+    $blogs = $request->user()->blogs()->with([
+      'categories',
+//      'views' => function($query) {
+//        $query->selectRaw('blog_id, count(*) as aggregate')->groupBy('blog_id');
+//      }
+    ])->get();
+
     return Inertia::render('Blog/Blog', [
       'categories' => $categories,
+      'blogs' => $blogs,
     ]);
   }
 

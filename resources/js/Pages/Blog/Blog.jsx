@@ -1,16 +1,18 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import Chip from '@/Components/Chip'
 import { Button } from 'antd'
-import Card from '@/Components/Card'
+import { BlogCard } from '@/Components/Card'
 import ListTile from '@/Components/ListTile'
 import { useState } from 'react'
 import Modal from '@/Components/Modal'
 import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
 
-function Blog({categories}) {
+function Blog({categories, blogs}) {
   const [selectedCategories, setSelectedCategories] = useState(categories)
   const [showFilter, setShowFilter] = useState(false)
+
+  console.log(blogs)
 
   return (
     <AdminLayout>
@@ -90,11 +92,11 @@ function Blog({categories}) {
             </div>
 
             <div className="flex flex-col md:flex-row flex-wrap gap-4 md:pr-6">
-              {/*<Card />*/}
-              {/*<Card />*/}
-              {/*<Card />*/}
-              {/*<Card />*/}
-              {/*<Card />*/}
+              {
+                blogs.map((blog, index) => {
+                  return <BlogCard key={index} blog={blog} />
+                })
+              }
             </div>
 
           </div>

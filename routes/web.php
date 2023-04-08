@@ -8,6 +8,7 @@ use \App\Http\Controllers\Admin\AdminController;
 use \App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Admin\ProjectController;
 use \App\Http\Controllers\RouteController;
+use \App\Http\Controllers\BlogsController;
 
 Route::get('/', [RouteController::class, 'home'])->name('home');
 
@@ -27,6 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
   //projects
   Route::post('/panel/projects/add', [ProjectController::class, 'addProject'])->name('project.addProject');
   Route::post('/panel/projects/edit/{id}', [ProjectController::class, 'editProject'])->name('project.editProject');
+
+  //blogs
+  Route::post('/panel/blogs/add', [BlogsController::class, 'addBlog'])->name('blog.addBlog');
 
 });
 
