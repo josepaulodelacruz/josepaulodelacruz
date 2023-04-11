@@ -8,11 +8,9 @@ import Modal from '@/Components/Modal'
 import InputLabel from '@/Components/InputLabel'
 import TextInput from '@/Components/TextInput'
 
-function Blog({categories, blogs}) {
+function Blog({categories, blogs, latestBlogs}) {
   const [selectedCategories, setSelectedCategories] = useState(categories)
   const [showFilter, setShowFilter] = useState(false)
-
-  console.log(blogs)
 
   return (
     <AdminLayout>
@@ -43,23 +41,24 @@ function Blog({categories, blogs}) {
 
           <div className="flex h-0.5 bg-gray-300 grow mx-6"/>
 
-          <div className="flex flex-col md:flex-row grow mx-6 my-8 gap-4">
-            <div className="flex-1 flex-col bg-white rounded shadow-md p-4">
-              <span className="text-sm font-light">Most View Blogs</span>
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
-              <ListTile />
+          <div className="flex flex-col md:flex-row gap-4 px-6">
+            <div className="flex-col flex mt-4 grow">
+              <div className="bg-white h-full px-2 py-4 rounded shadow">
+                <span className="text-sm font-medium">Trending Blogs</span>
+                <div className="flex h-[1px] bg-gray-300 grow mt-3"/>
+
+              </div>
             </div>
-            <div className="flex-1">
-              <div className="flex-1 flex-col bg-white rounded shadow-md p-4">
-                <span className="text-sm font-light">Most recent Blogs</span>
-                <ListTile/>
-                <ListTile />
-                <ListTile />
-                <ListTile />
-                <ListTile />
+
+            <div className="flex-col flex mt-4 grow">
+              <div className="bg-white h-full px-2 py-4 rounded shadow">
+                <span className="text-sm font-medium">Recent Blogs</span>
+                <div className="flex h-[1px] bg-gray-300 grow mt-3"/>
+                {
+                  latestBlogs && latestBlogs.map((blog, index) => (
+                    <ListTile key={index} field={blog.title} />
+                  ))
+                }
               </div>
             </div>
 
@@ -69,7 +68,7 @@ function Blog({categories, blogs}) {
           <div className="flex h-0.5 bg-gray-300 grow mx-6"/>
 
           <div className="flex flex-col md:pl-6 md:mt-3">
-            <div className="flex flex-col md:flex-row ">
+            <div className="flex flex-col md:flex-row px-4 py-3 md:p-0">
               <div className="flex flex-row flex-1 flex-wrap items-center mb-4">
                 <span className="text-xl font-semibold flex self-center mr-4">List of Blogs </span>
                 {

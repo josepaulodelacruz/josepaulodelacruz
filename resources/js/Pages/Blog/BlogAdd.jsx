@@ -7,7 +7,7 @@ import InputError from '@/Components/InputError'
 import Upload from '@/Components/Upload'
 import { useForm } from '@inertiajs/react';
 
-function AddBlog ({categories}) {
+function BlogAdd ({categories}) {
   const [showImage, setShowImage] = useState(null)
   const { data, setData, post, processing, errors, reset } = useForm({
     title: '',
@@ -17,9 +17,9 @@ function AddBlog ({categories}) {
     host_link: '',
   });
 
-
   const _handleNext = () => {
-    post(route('blog.addBlog'))
+
+    // post(route('blog.addBlog'))
   }
 
   return (
@@ -54,7 +54,9 @@ function AddBlog ({categories}) {
         <div className="flex flex-row justify-between content-center items-center pt-6 pr-6 pl-6">
           <span className="text-2xl font-semibold">Add Blogs</span>
           <Button
-            onClick={_handleNext} className="bg-blue-900 text-md text-white ">
+            // onClick={_handleNext}
+            href={route('panel.blogs.doc', {id: 1})}
+            className="bg-blue-900 text-md text-white ">
             Next
           </Button>
         </div>
@@ -153,4 +155,4 @@ function InputSection({label = "", errorMessage = "", onChange = () => {}}) {
   )
 }
 
-export default AddBlog
+export default BlogAdd

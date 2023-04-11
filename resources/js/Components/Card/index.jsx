@@ -70,8 +70,8 @@ function Card ({ project }) {
 
 function BlogCard ({ blog}) {
   return (
-    <div className="md:w-60 group overflow-hidden shadow-lg">
-      <div className="flex relative flex-col bg-white shadow-sm rounded sm:grow min-w-min shadow-lg">
+    <div className="md:w-60 group overflow-hidden shadow-lg hover:shadow duration-200">
+      <div className="flex relative flex-col bg-white shadow-sm rounded sm:grow min-w-min ">
 
         {/*Retrieve blog.file then render*/}
         <div className="relative overflow-hidden">
@@ -92,7 +92,7 @@ function BlogCard ({ blog}) {
                 </div>
                 <div className="flex flex-col">
                   <Button onClick={() => {
-                    router.visit(`/panel/projects/edit/${blog.id}`, {method: 'get'})
+                    router.visit(`/panel/blogs/edit/${blog.id}`, {method: 'get'})
                   }} shape={'circle text-white block'}>
                     <span className="material-icons text-sm">&#xe3c9;</span>
                   </Button>

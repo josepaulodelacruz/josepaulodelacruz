@@ -19,6 +19,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel/projects/edit/{id}', [AdminController::class, 'projectEdit'])->name('panel.projects.edit');
   Route::get('/panel/blogs', [AdminController::class, 'blogIndex'])->name('panel.blogs');
   Route::get('/panel/blogs/add', [AdminController::class, 'blogAdd'])->name('panel.blogs.add');
+  Route::get('/panel/blogs/edit/{id}', [AdminController::class, 'blogEdit'])->name('panel.blogs.edit');
+  Route::get('/panel/blogs/{id}/doc', [AdminController::class, 'blogDoc'])->name('panel.blogs.doc');
   Route::get('/panel/categories', [AdminController::class, 'categories'])->name('panel.categories');
 
   /// Categories
@@ -31,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
   //blogs
   Route::post('/panel/blogs/add', [BlogsController::class, 'addBlog'])->name('blog.addBlog');
+  Route::post('/panel/blogs/edit/{id}', [BlogsController::class, 'editBlog'])->name('blog.editBlog');
 
 });
 

@@ -62,7 +62,6 @@ function Projects({projects, categories}) {
                 <ListTile/>
               </div>
             </div>
-
           </div>
 
           {/*Create a horizontal line with a full width*/}

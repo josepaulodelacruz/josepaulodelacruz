@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\Blogs;
 use App\Models\Category\Category;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ class AdminController extends Controller
       return $category;
     });
 
+    $latestBlogs = $request->user()->blogs()->latest()->take(5)->get();
+
     $blogs = $request->user()->blogs()->with([
       'categories',
 //      'views' => function($query) {
@@ -35,15 +38,33 @@ class AdminController extends Controller
     return Inertia::render('Blog/Blog', [
       'categories' => $categories,
       'blogs' => $blogs,
+      'latestBlogs' => $latestBlogs,
     ]);
   }
 
   public function blogAdd() {
     $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
 
-    return Inertia::render('Blog/AddBlog', [
+    return Inertia::render('Blog/BlogAdd', [
       'categories' => $categories,
     ]);
+  }
+
+  public function blogEdit($id)
+  {
+    $categories = Category::select(['id', 'value', 'label', 'icon_code'])->get();
+
+    $blog = Blogs::where('id', $id)->with('categories')->first();
+
+    return Inertia::render('Blog/BlogEdit', [
+      'categories' => $categories,
+      'blog' => $blog,
+    ]);
+  }
+
+  public function blogDoc($id)
+  {
+    return Inertia::render('Blog/BlogDoc');
   }
 
   public function projectIndex(Request $request)
