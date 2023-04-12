@@ -18,8 +18,7 @@ function BlogAdd ({categories}) {
   });
 
   const _handleNext = () => {
-
-    // post(route('blog.addBlog'))
+    post(route('blog.addBlog'))
   }
 
   return (
@@ -54,8 +53,8 @@ function BlogAdd ({categories}) {
         <div className="flex flex-row justify-between content-center items-center pt-6 pr-6 pl-6">
           <span className="text-2xl font-semibold">Add Blogs</span>
           <Button
-            // onClick={_handleNext}
-            href={route('panel.blogs.doc', {id: 1})}
+            onClick={_handleNext}
+            // href={route('panel.blogs.doc', {id: 1})}
             className="bg-blue-900 text-md text-white ">
             Next
           </Button>

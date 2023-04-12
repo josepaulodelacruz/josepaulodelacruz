@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class BlogsController extends Controller
 {
@@ -39,7 +40,8 @@ class BlogsController extends Controller
     //create list of categories related to the newly created project
     $blog->categories()->createMany($categories);
 
-    return to_route('panel.blogs');
+    //navigate to route panel.blogs.doc
+    return redirect()->route('panel.blogs.doc', ['id' => $blog->id]);
   }
 
   public function editBlog(Request $request, $id)
@@ -86,7 +88,7 @@ class BlogsController extends Controller
     //create list of categories related to the newly created project
     $blog->categories()->createMany($categories);
 
-    return to_route('panel.blogs');
+    return redirect()->route('panel.blogs.doc', ['id' => $blog->id]);
   }
 
   private function uploadFile($file, $path)

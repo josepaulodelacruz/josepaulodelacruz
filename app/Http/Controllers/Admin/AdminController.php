@@ -64,7 +64,9 @@ class AdminController extends Controller
 
   public function blogDoc($id)
   {
-    return Inertia::render('Blog/BlogDoc');
+    $blog = Blogs::where('id', $id)->with(['categories', 'user'])->first();
+
+    return Inertia::render('Blog/BlogDoc', ['blog' => $blog]);
   }
 
   public function projectIndex(Request $request)

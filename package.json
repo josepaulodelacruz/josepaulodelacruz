@@ -17,6 +17,7 @@
         "r3f-perf": "^7.1.2",
         "react-device-detect": "^2.2.3",
         "react-hook-screen-orientation": "^1.0.4",
+        "react-quill": "^2.0.0",
         "react-terminal-ui": "^1.0.1",
         "sass": "^1.60.0",
         "three": "^0.150.0",

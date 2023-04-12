@@ -18,7 +18,6 @@ function  BlogEdit ({categories, blog}) {
   });
 
   useEffect(() => {
-    console.log(blog.cover_photo)
     setShowImage(blog.cover_photo);
     setData({
       title: blog.title,
