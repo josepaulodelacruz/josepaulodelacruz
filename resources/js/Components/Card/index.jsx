@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import { router } from '@inertiajs/react'
 
 function Card ({ project }) {
+  console.log(project)
   return (
     <div className="md:w-60 group overflow-hidden">
       <div className="flex relative flex-col bg-white shadow-sm rounded sm:grow min-w-min shadow-lg">
@@ -46,7 +47,7 @@ function Card ({ project }) {
                {project.title}
             </span>
               <div className="flex flex-row justify-center self-center">
-                <span className="text-gray-600 text-md">{project.views[0].aggregate}</span>
+                <span className="text-gray-600 text-md">{project.views[0]}</span>
                 <span style={{ fontSize: '10px' }} className=" self-center  px-1">views</span>
               </div>
             </div>
