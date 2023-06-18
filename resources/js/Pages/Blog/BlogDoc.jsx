@@ -40,9 +40,16 @@ const formats = [
 ]
 
 function BlogDoc ({blog}) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
+  const [images, setImages] = useState([])
   const dateCreated = new Date(blog.created_at)
 
+
+  const _addImage = () => {
+    setImages([...images, ''])
+  }
+
+  console.log(blog.cover_photo)
 
   return (
     <div className="flex flex-row bg-gray-100 h-screen  gap-4">
@@ -53,15 +60,22 @@ function BlogDoc ({blog}) {
 
           <div className="flex flex-row justify-between">
             <span>Upload Images</span>
-            <Button>Add Image</Button>
+            <Button onClick={_addImage}>Add Image</Button>
           </div>
 
-          <div className="flex flex-row justify-between pt-3">
-            <input type="file" name="file" id="file" className="inputfile"/>
-            <Button>
-              Remove
-            </Button>
-          </div>
+          {
+            images.map((image, index) => {
+              return (
+                <div className="flex flex-row justify-between pt-3">
+                  <input type="file" name="file" id="file" className="inputfile"/>
+                  <Button>
+                    Remove
+                  </Button>
+                </div>
+              )
+            })
+          }
+
 
 
           <ReactQuill
@@ -95,7 +109,7 @@ function BlogDoc ({blog}) {
 
           </div>
 
-          <div id="cover_photo" className="flex bg-blue-300" style={{height: '300px'}}/>
+          <img src={blog.cover_photo} alt="project image" className="flex bg-blue-300 h-[300px]" />
 
           <div className="flex flex-col px-2 py-3">
 
