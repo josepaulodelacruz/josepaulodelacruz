@@ -12,15 +12,15 @@ class RouteController extends Controller
   {
 
     $project = Projects::find(1); // home route for the project
-
-    $ip = $request->ip();
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-//    $ip = $_SERVER['REMOTE_ADDR'];
-
-    $project->views()->updateOrCreate([
-      'ip' => $ip,
-      'user_agent' => $user_agent
-    ]);
+//
+//    $ip = $request->ip();
+//    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+////    $ip = $_SERVER['REMOTE_ADDR'];
+//
+//    $project->views()->updateOrCreate([
+//      'ip' => $ip,
+//      'user_agent' => $user_agent
+//    ]);
 
     return Inertia::render('Home');
   }
