@@ -76,8 +76,6 @@ function BlogDoc ({blog}) {
             })
           }
 
-
-
           <ReactQuill
             theme="snow"
             value={value}
