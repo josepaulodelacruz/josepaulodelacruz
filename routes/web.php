@@ -12,6 +12,9 @@ use \App\Http\Controllers\BlogsController;
 
 Route::get('/', [RouteController::class, 'home'])->name('home');
 
+Route::get('/hero', [RouteController::class, 'hero'])->name('hero');
+
+
 Route::middleware(['auth', 'verified'])->group(function() {
   Route::get('/panel', [AdminController::class, 'index'])->name('panel');
   Route::get('/panel/projects', [AdminController::class, 'projectIndex'])->name('panel.projects');
